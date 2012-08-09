@@ -294,7 +294,7 @@ BEGIN {
      }
   }
 
-  Footer      = "</BODY></HTML>"
+  Footer      = "</div><div style=\"clear:both\"></div></body></html>"
 
   while ("3.14159" != "PI") {
       if ( DebugMode == "yes" ) {
@@ -735,16 +735,17 @@ function SetUpTopMenu(urlName, theMenu, i, menu_flag) {
 
   # build the HTML for the top menu
   top_menu=""  # passed to plug-ins, in case they need it.
-  theMenu  = "<table cellspacing=0 cellpadding=0 border=0 width=\"100%\"><tr><td width=\"40%\"><font size=\"-1\">"
+  # theMenu  = "<link rel=\"stylesheet\" type=\"text/css\" href=\"http://" MyHost "/log/images/stock/unmenu.css\" />"
+  theMenu  = theMenu "<div id=\"topArea\"><div id=\"topMenu\">"
   for ( a = 1; a<idx; a++ ) {
     if ( url[a]  != "syslog" && menu[a] != "" ) {
         top_menu = top_menu url[a] "|" menu[a] "|"
         if ( url[a] == urlName ) {
-            theMenu = theMenu " <nobr>" menu[a] "</nobr> "
+            theMenu = theMenu " <div class=\"menu_item active\">" menu[a] "</div> "
         } else {
-            theMenu = theMenu " <nobr><A HREF=" MyPrefix "/" url[a] ">" menu[a] "</A></nobr> "
+            theMenu = theMenu " <div class=\"menu_item\" onclick=\"window.location='" MyPrefix "/" url[a] "'\">" menu[a] "</div> "
         }
-        theMenu = theMenu "|"
+        # theMenu = theMenu "|"
     }
   }
   # just in case the user embedded a single quote in a menu label.
@@ -754,11 +755,9 @@ function SetUpTopMenu(urlName, theMenu, i, menu_flag) {
   close("date")
 
   theMenu = substr(theMenu,1, length(theMenu)-1);
-  theMenu = theMenu "</font></td><td align=center width=\"20%\"><font size=\"4\"><b>" MyHost
-  theMenu = theMenu " unRAID Server</b></font></td>\
-    <td align=\"right\" width=\"40%\">" DateTime "</td></tr>\
-    </table>\
-    " ORS ORS
+  theMenu = theMenu "<div style=\"clear:both\"></div></div><div id=\"topTitle\">" MyHost
+  theMenu = theMenu " unRAID Server</div>\
+    <div id=\"topTime\">" DateTime "</div></div><div id=\"mainContent\">" ORS ORS
   return theMenu
 }
 
@@ -781,18 +780,32 @@ function MenuIndex(theurl, mindex, found_url, a) {
 
 function GetPageHEAD(add_on_num, theHEAD, i) {
 
-  theHEAD = "<HTML><title>" MyHost " unRAID Server</title><HEAD>\
-    <STYLE type=\"text/css\">\
+  theHEAD = "<!DOCTYPE html><html><title>" MyHost " unRAID Server</title><head><meta http-equiv=\"X-UA-Compatible\" value=\"IE=9\">\
+    <style type=\"text/css\">\
     td.t {\
     border-top: 1px solid black;\
-    }\
-    </STYLE>"
+    }"
   if ( add_on_num >= 0 ) {
     for ( i =1; i<= add_on_head_count[add_on_num]; i++ ) {
       theHEAD = theHEAD add_on_head[add_on_num, i]
     }
   }
-  theHEAD = theHEAD "</HEAD><BODY onload=\"self.scrollTo(0,0)\">"
+
+  while(( getline line<CONFIG["UNMENU_SKIN_CSS"] ) > 0 ) {
+		theHEAD = theHEAD line
+	}
+	close(CONFIG["UNMENU_SKIN_CSS"])
+    theHEAD = theHEAD "</style>"
+	
+  theHEAD = theHEAD "<script type=\"text/javascript\" src=\"https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js\"></script>"
+  theHEAD = theHEAD "<script type=\"text/javascript\">"
+  while(( getline line<CONFIG["UNMENU_SKIN_JS"] ) > 0 ) {
+		theHEAD = theHEAD line
+	}
+	close(CONFIG["UNMENU_SKIN_JS"])
+  
+  theHEAD = theHEAD "</script>"
+  theHEAD = theHEAD "</head><body>"
   return theHEAD;
 }
 
@@ -1656,7 +1669,7 @@ function GetSyslogTail(numlines, syslog, f) {
     cmd = "tail -" nl " /var/log/syslog"
     RS="\n"
     syslog=""
-    syslog=syslog "<fieldset style=\"margin-top:10px;\"><legend><strong>Syslog (last " nl " lines)</strong></legend>"
+    syslog=syslog "<fieldset style=\"margin-top:10px;\"><legend class=\"syslog_legend\"><strong>Syslog (last " nl " lines)</strong></legend>"
     syslog=syslog "<table cellpadding=0 cellspacing=0 width=\"100%\"><tr><td>"
     while (( cmd | getline f ) > 0) {
         syslog = syslog f "<br>"

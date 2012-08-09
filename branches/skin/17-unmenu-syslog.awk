@@ -27,7 +27,7 @@ BEGIN {
 
   log_fname = "/var/log/syslog"
 
-  theHTML = "<fieldset><legend><strong>System Log (last " nl " lines)</strong>"
+  theHTML = "<fieldset><legend class=\"syslog_legend\"><strong>System Log (last " nl " lines)</strong>"
   theHTML = theHTML "&nbsp&nbsp;Legend => <font color=red> Errors </font> <font color=orange> Minor Issues </font> "
   theHTML = theHTML "<font color=lime> Lime Tech </font> <font color=green> unRAID engine </font> "
   theHTML = theHTML "<font color=blue> System </font> <font color=teal> Drive related </font> "
