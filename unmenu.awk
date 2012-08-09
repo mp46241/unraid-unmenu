@@ -757,7 +757,7 @@ function SetUpTopMenu(urlName, theMenu, i, menu_flag) {
   theMenu = substr(theMenu,1, length(theMenu)-1);
   theMenu = theMenu "<div style=\"clear:both\"></div></div><div id=\"topTitle\">" MyHost
   theMenu = theMenu " unRAID Server</div>\
-    <div id=\"topTime\">" DateTime "</div></div><div id=\"mainContent\">" ORS ORS
+    <div id=\"topTime\">" DateTime "</div><div style=\"clear:both\"></div></div><div id=\"mainContent\">" ORS ORS
   return theMenu
 }
 
@@ -784,13 +784,14 @@ function GetPageHEAD(add_on_num, theHEAD, i) {
     <style type=\"text/css\">\
     td.t {\
     border-top: 1px solid black;\
-    }"
+    }</style>"
   if ( add_on_num >= 0 ) {
     for ( i =1; i<= add_on_head_count[add_on_num]; i++ ) {
       theHEAD = theHEAD add_on_head[add_on_num, i]
     }
   }
 
+  theHEAD = theHEAD "<style type=\"text/css\">"
   while(( getline line<CONFIG["UNMENU_SKIN_CSS"] ) > 0 ) {
 		theHEAD = theHEAD line
 	}
