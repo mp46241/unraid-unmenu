@@ -157,7 +157,8 @@ color:black;
 {
 	/*float:left;*/
 	padding-top:32px;
-	margin-left:150px
+	margin-left:150px;
+	overflow:hidden;
 	/*width:80%;*/
 }
 
@@ -166,3 +167,9 @@ color:black;
 width:100px !important;
 height:50px;
 }
+
+table.table_array_disk_status tr:nth-child(2n+1)
+{
+	background-color:#e0e0e0;
+}
+	
