@@ -2250,7 +2250,7 @@ function DiskStatusHTML(i,outstr) {
         outstr = outstr disk_writes[i] "</td><td align=\"right\">" disk_errors[i] "</td>"
 
         outstr = outstr "<td align=\"right\">" disk_size[i] "</td><td align=\"right\">" disk_used[i]
-        outstr = outstr "</td><td align=\"right\">" disk_pctuse[i] "</td>"
+        outstr = outstr "</td><td align=\"center\" width=\"110\"><div class=\"disk_usage_background\"><div class=\"disk_usage_text\">" disk_pctuse[i] "</div><div class=\"disk_usage_used\" style=\"width:" disk_pctuse[i] "\"></div></div></td>"
         outstr = outstr "<td align=\"right\">" disk_avail[i] "</td>"
         outstr = outstr "</tr>"
     }
