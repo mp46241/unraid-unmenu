@@ -966,7 +966,7 @@ function SetUpHomePage() {
       gsub("%MyHost%",MyHost,main_page_user_content)
       gsub("%MyPort%",MyPort,main_page_user_content)
 
-      PageDoc = PageDoc "<iframe width=\"100%\" "  main_page_user_content "\">"
+      PageDoc = PageDoc "<iframe width=\"100%\" "  main_page_user_content ">"
       PageDoc = PageDoc "Sorry: your browser does not seem to support inline frames"
       PageDoc = PageDoc "</iframe>"
   }
@@ -2200,7 +2200,7 @@ function DiskStatusHTML(i,outstr) {
     total_disk_used = 0
     total_disk_avail = 0
     outstr ="<fieldset style=\"margin-top:10px;\"><legend><strong>Array Disk Status</strong></legend>"
-    outstr = outstr "<table width=\"100%\" cellpadding=0 cellspacing=0 border=0>"
+    outstr = outstr "<table class=\"table_array_disk_status\" width=\"100%\" cellpadding=0 cellspacing=0 border=0>"
     outstr = outstr "<tr>"
     outstr = outstr "<td><u>Status</u></td><td><u>Disk</u></td><td><u>Mounted</u></td>"
     outstr = outstr "<td><u>Device</u></td><td><u>Model/Serial</u></td><td align=\"right\"><u>Temp</u></td>"
