@@ -101,7 +101,7 @@ do
     fi
     if [ "${label[$i]}" != "" -a "${label[$i]}" != " " -a "${descr[$i]}" != "" ]
     then
-        echo "<tr><td><input type=submit value=\"${label[$i]}\" name=\"command\"></td><td>${descr[$i]}</td></tr>"
+        echo "<tr><td><input class=\"user_script_button\" type=submit value=\"${label[$i]}\" name=\"command\"></td><td>${descr[$i]}</td></tr>"
     fi
     let i=i+1
 done

@@ -51,7 +51,7 @@ BEGIN {
   GetConfigValues(ScriptDirectory "/" ConfigFile);
   GetConfigValues(ScriptDirectory "/" LocalConfigFile);
 
-  PACKAGE_DIRECTORY = CONFIG["PACKAGE_DIRECTORY"] ? CONFIG["PACKAGE_DIRECTORY"] : "/boot/packages"
+  PACKAGE_DIRECTORY = ote ? CONFIG["PACKAGE_DIRECTORY"] : "/boot/packages"
   AUTO_INSTALL_COMMAND = CONFIG["AUTO_INSTALL_COMMAND"] ? CONFIG["AUTO_INSTALL_COMMAND"] : ""
 
   # if this directory does not exist, the auto install file command will be appended to the /boot/config/go script
