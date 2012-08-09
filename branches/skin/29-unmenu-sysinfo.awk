@@ -51,7 +51,7 @@ BEGIN {
       }
     }
 
-    buttons = buttons "<td ><input type=submit name='option' value='" commands[ stg, "button"] "'"
+    buttons = buttons "<td ><input class=\"sysinfo_button\" type=submit name='option' value='" commands[ stg, "button"] "'"
     if ( commands[stg, "tool_tip" ] != "" ) {
        buttons = buttons " title='"  commands[stg, "tool_tip"] "'"
     }
